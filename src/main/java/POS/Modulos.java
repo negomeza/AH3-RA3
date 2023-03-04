@@ -78,42 +78,36 @@ public class Modulos extends javax.swing.JFrame {
         }
 
     
-       public void eliminar(int vendedor) {
-        try {
-            // Leer los datos actuales del archivo y guardarlos en una nueva LinkedList
-            FileInputStream fileIn = new FileInputStream("vendedores.dat");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            LinkedList<vendedores> listaVendedoresActual = (LinkedList<vendedores>) in.readObject();
-            in.close();
-            fileIn.close();
+       public void eliminar(int posicion) {
+    try {
+        // Leer los datos actuales del archivo y guardarlos en una nueva LinkedList
+        FileInputStream fileIn = new FileInputStream("vendedores.dat");
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+        LinkedList<vendedores> listaVendedoresActual = (LinkedList<vendedores>) in.readObject();
+        in.close();
+        fileIn.close();
 
-            // Buscar el vendedor a eliminar en la nueva LinkedList y eliminarlo
-            Iterator<vendedores> iterator = listaVendedoresActual.iterator();
-            while (iterator.hasNext()) {
-                vendedores vendedorActual = iterator.next();
-                if (vendedorActual.getCodigo() == vendedor) {
-                    iterator.remove();
-                    break;
-                }
-            }
+        // Eliminar el vendedor en la posición deseada de la nueva LinkedList
+        listaVendedoresActual.remove(posicion);
 
-            // Escribir la nueva LinkedList actualizada en el archivo
-            FileOutputStream fileOut = new FileOutputStream("vendedores.dat");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(listaVendedoresActual);
-            out.close();
-            fileOut.close();
+        // Escribir la nueva LinkedList actualizada en el archivo
+        FileOutputStream fileOut = new FileOutputStream("vendedores.dat");
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        out.writeObject(listaVendedoresActual);
+        out.close();
+        fileOut.close();
 
-            JOptionPane.showMessageDialog(null, "Vendedor eliminado exitosamente");
+        JOptionPane.showMessageDialog(null, "Vendedor eliminado exitosamente");
 
-            Modulos ad = new Modulos();
-            ad.cambioVendedor(true);
-            dispose();
+        Modulos ad = new Modulos();
+        ad.cambioVendedor(true);
+        dispose();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
+
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -331,11 +325,13 @@ public class Modulos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void tblVendedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVendedoresMouseClicked
-
+        System.out.println(tblVendedores.getSelectedRows());
+        System.out.println(tblVendedores.getSelectedRow());
     }//GEN-LAST:event_tblVendedoresMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         eliminar(tblVendedores.getSelectedRow());
+        System.out.println(tblVendedores.getSelectedRow());
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed

@@ -182,6 +182,7 @@ public class POS extends javax.swing.JFrame {
             ModuloVentas ad = new ModuloVentas();
             ad.cambioModuloVentas(false);
             dispose();
+            ad.Bienvenida(vendedor.nombre);
         } else {
             JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
         }

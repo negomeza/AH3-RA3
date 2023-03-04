@@ -17,12 +17,11 @@ public class ModuloVentas extends javax.swing.JFrame {
      */
     public ModuloVentas() {
         initComponents();
-        Bienvenida();
     }
 
 
-    public void Bienvenida(){
-        lblUsuario.setText("Bienvenido, " + "Nelson Gómez");
+    public void Bienvenida(String nombre){
+        lblUsuario.setText("Bienvenido, " + nombre);
     }
 
     
